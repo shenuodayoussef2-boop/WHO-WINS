@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090b10">
+  <meta name="description" content="Create epic battles and vote for the winner.">
+  <title>WHO WINS? — The Battle Arena</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="logo" href="#"><span class="logo-mark">W</span> WHO <b>WINS?</b></a>
+    <nav>
+      <a href="#arena" data-i18n="navArena">Arena</a>
+      <a href="#create" data-i18n="navCreate">Create</a>
+      <button id="languageBtn" class="lang-btn" type="button">العربية</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="pill"><span></span><span data-i18n="eyebrow">THE INTERNET DECIDES</span></div>
+      <h1 data-i18n="heroTitle">ONE QUESTION.<br><span>TWO LEGENDS.</span></h1>
+      <p data-i18n="heroText">Create the ultimate showdown. Let people vote. Discover who really wins.</p>
+      <a class="button primary" href="#arena" data-i18n="explore">EXPLORE BATTLES ↗</a>
+
+      <div class="stats">
+        <div><strong id="battleCount">—</strong><small data-i18n="statBattles">BATTLES</small></div>
+        <div class="stat-divider"></div>
+        <div><strong id="voteCount">—</strong><small data-i18n="statVotes">VOTES CAST</small></div>
+        <div class="stat-divider"></div>
+        <div><strong>2</strong><small data-i18n="statChoices">CHOICES</small></div>
+      </div>
+    </section>
+
+    <section id="create" class="section">
+      <div class="section-heading">
+        <div><small data-i18n="createEyebrow">YOUR IDEA. YOUR BATTLE.</small><h2 data-i18n="createTitle">Start a showdown.</h2></div>
+        <span class="section-index">01 / CREATE</span>
+      </div>
+
+      <form id="createForm" class="panel">
+        <label for="question" data-i18n="questionLabel">WHAT ARE WE DECIDING?</label>
+        <input id="question" name="question" maxlength="100" required placeholder="Messi vs Ronaldo?">
+
+        <div class="choices">
+          <div class="choice choice-a">
+            <label for="optionOne" data-i18n="optionA">OPTION A</label>
+            <input id="optionOne" maxlength="50" required placeholder="MESSI">
+          </div>
+          <span class="versus">VS</span>
+          <div class="choice choice-b">
+            <label for="optionTwo" data-i18n="optionB">OPTION B</label>
+            <input id="optionTwo" maxlength="50" required placeholder="RONALDO">
+          </div>
+        </div>
+
+        <button class="button primary full" type="submit" data-i18n="createButton">CREATE YOUR BATTLE →</button>
+        <p id="formMessage" class="message" role="status"></p>
+      </form>
+    </section>
+    <!-- Trending Battles -->
+<section class="trending-section" id="trending">
+    <div class="section-heading">
+        <span class="section-tag">🔥 TRENDING</span>
+        <h2 data-i18n="trendingTitle">Trending Battles</h2>
+        <p data-i18n="trendingSubtitle">
+            The battles everyone is talking about.
+        </p>
+    </div>
+
+    <div class="trending-grid" id="trendingGrid"></div>
+</section>
+
+<!-- Leaderboard -->
+<section class="leaderboard-section" id="leaderboard">
+    <div class="section-heading">
+        <span class="section-tag">🏆 TOP RANKS</span>
+        <h2 data-i18n="leaderboardTitle">Leaderboard</h2>
+        <p data-i18n="leaderboardSubtitle">
+            The most voted battles on WHO WINS?
+        </p>
+    </div>
+
+    <div class="leaderboard-list" id="leaderboardList"></div>
+</section>
+    <section id="arena" class="section">
+      <div class="section-heading">
+        <div><small data-i18n="arenaEyebrow">THE COMMUNITY DECIDES</small><h2 data-i18n="arenaTitle">Enter the arena.</h2></div>
+        <button id="refreshBtn" class="refresh-btn" type="button">↻ <span data-i18n="refresh">Refresh</span></button>
+      </div>
+
+      <div class="filter-row"><span data-i18n="latest">LATEST BATTLES</span><span id="resultsCount">0</span></div>
+      <div id="pollGrid" class="poll-grid">
+        <div class="loading-card"><span class="loader"></span><p data-i18n="loading">Loading battles...</p></div>
+      </div>
+      <div id="emptyState" class="empty-state" hidden>
+        <div class="empty-icon">⚡</div>
+        <h3 data-i18n="emptyTitle">The arena is waiting.</h3>
+        <p data-i18n="emptyText">Be the first to create a battle.</p>
+        <a href="#create" class="text-link" data-i18n="emptyLink">CREATE THE FIRST BATTLE ↗</a>
+      </div>
+      <p id="arenaMessage" class="message" role="status"></p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a class="logo" href="#"><span class="logo-mark">W</span> WHO <b>WINS?</b></a>
+    <p data-i18n="footerText">Built for opinions. Powered by people.</p>
+    <span>© <span id="year"></span> WHO WINS?</span>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
