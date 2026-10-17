@@ -137,5 +137,30 @@
   </footer>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  
+<script>
+  (() => {
+    const loader = document.getElementById("introLoader");
+
+    if (!loader) return;
+
+    const hideLoader = () => {
+      loader.classList.add("is-hidden");
+      loader.setAttribute("aria-hidden", "true");
+    };
+
+    // إخفاء الشاشة بعد اكتمال تحميل الصفحة ومواردها
+    if (document.readyState === "complete") {
+      setTimeout(hideLoader, 700);
+    } else {
+      window.addEventListener("load", () => {
+        setTimeout(hideLoader, 700);
+      }, { once: true });
+    }
+
+    // منع بقاء الشاشة للأبد لو مورد خارجي اتأخر
+    setTimeout(hideLoader, 8000);
+  })();
+</script>
 </body>
 </html>
