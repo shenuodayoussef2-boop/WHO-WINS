@@ -471,3 +471,187 @@ html[dir="rtl"] .poll-question { text-align: right; }
         font-size: 12px;
     }
 }
+
+/* ===== WHO WINS: Cinematic Intro Loader ===== */
+
+.intro-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at center, #13212d 0%, #090b10 60%);
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.65s ease, visibility 0.65s ease;
+}
+
+.intro-loader::before,
+.intro-loader::after {
+  content: "";
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border: 1px solid #53e0f418;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: arenaPulse 3s ease-in-out infinite;
+}
+
+.intro-loader::after {
+  width: 440px;
+  height: 440px;
+  animation-delay: 0.7s;
+}
+
+.intro-content {
+  position: relative;
+  z-index: 1;
+  width: min(90%, 420px);
+  text-align: center;
+  animation: introAppear 0.8s ease both;
+}
+
+.intro-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--text);
+  font-size: clamp(25px, 5vw, 36px);
+  font-weight: 900;
+  letter-spacing: -1px;
+}
+
+.intro-logo strong {
+  color: var(--cyan);
+}
+
+.intro-mark {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: var(--cyan);
+  color: #071015;
+  box-shadow: 0 0 35px #53e0f438;
+  animation: markGlow 2s ease-in-out infinite;
+}
+
+.intro-battle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin: 48px 0 36px;
+}
+
+.intro-choice {
+  display: grid;
+  place-items: center;
+  width: 74px;
+  height: 74px;
+  border: 1px solid #53e0f47a;
+  border-radius: 18px;
+  background: #111923;
+  color: var(--cyan);
+  font-size: 30px;
+  font-weight: 900;
+  box-shadow: 0 0 28px #53e0f410;
+  animation: choiceFloat 2s ease-in-out infinite;
+}
+
+.intro-choice:last-child {
+  animation-delay: 0.3s;
+  border-color: #ff9c5b7a;
+  color: var(--orange);
+}
+
+.intro-vs {
+  color: var(--orange);
+  font-size: 16px;
+  font-weight: 950;
+  letter-spacing: 2px;
+  animation: vsFlash 1.5s ease-in-out infinite;
+}
+
+.intro-content h2 {
+  margin: 0;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 850;
+  letter-spacing: 2px;
+}
+
+.intro-content > p {
+  margin: 8px 0 22px;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+.intro-progress {
+  width: min(100%, 280px);
+  height: 4px;
+  margin: auto;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #27313e;
+}
+
+.intro-progress span {
+  display: block;
+  width: 40%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--cyan), #fff, var(--cyan));
+  box-shadow: 0 0 15px #53e0f4;
+  animation: progressSweep 1.3s ease-in-out infinite;
+}
+
+.intro-loader.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+@keyframes introAppear {
+  from { opacity: 0; transform: translateY(18px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes arenaPulse {
+  0%, 100% { transform: scale(0.92); opacity: 0.25; }
+  50% { transform: scale(1.08); opacity: 0.75; }
+}
+
+@keyframes markGlow {
+  0%, 100% { box-shadow: 0 0 20px #53e0f420; }
+  50% { box-shadow: 0 0 40px #53e0f460; }
+}
+
+@keyframes choiceFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+@keyframes vsFlash {
+  0%, 100% { opacity: 0.6; transform: scale(0.95); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+@keyframes progressSweep {
+  from { transform: translateX(-120%); }
+  to { transform: translateX(280%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-loader *,
+  .intro-loader::before,
+  .intro-loader::after {
+    animation: none !important;
+  }
+}
